@@ -11,15 +11,22 @@ export class HeaderComponent implements OnInit {
 
       loginUserName:string=""
       wishlistCount:number=0
+      cartListCount:number=0
 
       constructor(private route:Router,private api:ApiService){}
  
       ngOnInit(): void {
         if(sessionStorage.getItem("username")){
           this.loginUserName = sessionStorage.getItem("username") || ""
+
         this.api.wishListCount.subscribe((res:any)=>{
           this.wishlistCount=res
         })
+
+          this.api.cartCount.subscribe((res:any)=>{
+            this.cartListCount=res
+          })
+
         }
         else{
           this.loginUserName = ""

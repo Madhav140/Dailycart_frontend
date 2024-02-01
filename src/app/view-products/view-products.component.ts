@@ -57,8 +57,20 @@ product:any={}
   }
 
   addtoCart(product:any){
-    if(localStorage.getItem('token')){
-      alert('proceed')
+    if(sessionStorage.getItem('token')){
+      Object.assign(product,{quantity:1})
+      this.api.addToCartApi(product).subscribe({
+        next:(res:any)=>{      
+          console.log(res);  
+          alert('product added to cart successfully')  
+          this.api.getcartCount() 
+        },
+        error:(err:any)=>{
+          console.log(err);
+          alert(err.error)
+          
+        }
+      })
     }
     else{
       alert('Please login')

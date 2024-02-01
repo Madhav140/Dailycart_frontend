@@ -33,7 +33,6 @@ export class AllproductsComponent implements OnInit {
           console.log(res);  
           this.api.getwishCount()
           alert('product added to wishlist successfully')  
-         
         },
         error:(err:any)=>{
           console.log(err);
@@ -55,7 +54,8 @@ export class AllproductsComponent implements OnInit {
       this.api.addToCartApi(product).subscribe({
         next:(res:any)=>{      
           console.log(res);  
-          alert('product added to cart successfully')   
+          alert('product added to cart successfully') 
+          this.api.getcartCount()
         },
         error:(err:any)=>{
           console.log(err);

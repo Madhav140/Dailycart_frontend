@@ -35,7 +35,6 @@ export class WishlistComponent implements OnInit{
    deleteWish(id:any){
     this.api.removeFromWish(id).subscribe({
       next:(res:any)=>{      
-        alert('Product removed from wishlist')
         this.getWishlist()
         this.api.getwishCount()
       },
@@ -45,6 +44,28 @@ export class WishlistComponent implements OnInit{
       }
     })
    }
+
+   addtoCart(product:any){
+    if(sessionStorage.getItem('token')){
+      Object.assign(product,{quantity:1})
+      this.api.addToCartApi(product).subscribe({
+        next:(res:any)=>{      
+          console.log(res);  
+          alert('product added to cart successfully')   
+          this.api.getcartCount()
+          this.deleteWish(product._id)     
+        },
+        error:(err:any)=>{
+          console.log(err);
+          alert(err.error)
+          
+        }
+      })
+    }
+    else{
+      alert('Please login')
+    }
+  }
 
 
 

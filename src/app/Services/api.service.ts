@@ -11,6 +11,7 @@ export class ApiService {
   constructor(private http: HttpClient) { 
     if(sessionStorage.getItem("token")){
       this.getwishCount() //to avoid removal of the value while refresh
+      this.getcartCount()
     }
   }
 
@@ -71,5 +72,27 @@ export class ApiService {
        return this.http.post(`${this.server_url}/add-cart`,product,this.addTokentoHeader())
    }
 
+
+   getItemFromCartApi(){
+    return this.http.get(`${this.server_url}/cart/allproduct`,this.addTokentoHeader())
+   }
+
+
+   cartCount = new BehaviorSubject(0)
+   getcartCount(){
+    this.getItemFromCartApi().subscribe((res:any)=>{
+      this.cartCount.next(res.length)
+    })
+   }
+
+
+   removeCartItemApi(id:any){
+   return this.http.delete(`${this.server_url}/cart/removeitem/${id}`,this.addTokentoHeader())
+   }
+
+
+
+
+  
 
 }
