@@ -1,0 +1,50 @@
+<div class="row mt-5">
+    <div class="col col-2"></div>
+  
+    <div class="col col-4">
+      <div class="card shadow w-100">
+        <div class="d-flex justify-content-center align-items-center flex-column">
+          <i class="fa-light fa-user fa-bounce fa-2xl mt-5"></i>
+          <h2 class="text-danger">Welcome User</h2>
+          <div class="mt-5">
+            <div class="d-flex justify-content-center align-items-center">
+              <form [formGroup]="loginForm" (ngSubmit)="login()" class="mt-5 me-4 border rounded shadow w-full p-3 mb-5">
+                <div class="mb-3 mt-3">
+                  <h2 class="text-center">Login</h2>
+                </div>
+  
+                <div class="mb-3 mt-5">
+                  <input formControlName="email"
+                  name="email" type="email" class="form-control" placeholder="Email" />
+                  <span *ngIf="loginForm.get('email')?.errors && loginForm.get('email')?.touched" class="text-danger" >Invalid Email</span>
+
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="password"
+                    class="form-control"
+                    placeholder="Password"
+                    formControlName="password"
+                    name="pswd"
+                  />
+                  <span *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched" class="text-danger" >Invalid Password</span>
+
+                </div>
+                <div class="mb-3 w-full">
+                  <button type="submit" class="btn btn-success ms-1">
+                    Login
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <h1></h1>
+      </div>
+    </div>
+  
+    <div class="col col-4">
+      <img src="https://th.bing.com/th/id/OIG.qGja1CZKGXbsNDC0XmYH?pid=ImgGn" alt="no-image" height="550px" width="450px">
+    </div>
+    <div class="col col-2"></div>
+  </div>
